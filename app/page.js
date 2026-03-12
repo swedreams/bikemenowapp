@@ -1,12 +1,21 @@
 import Link from "next/link";
+import {
+    Search,
+    Bike,
+    Shield,
+    Compass,
+    Wrench,
+    Gauge,
+    HelpCircle
+} from "lucide-react";
 
 const popularSearches = [
-    "Yamaha MT-07",
-    "Best beginner motorcycles",
-    "Adventure bikes",
-    "Touring motorcycles",
-    "Naked bikes",
-    "Sport bikes",
+    { label: "Yamaha MT-07", icon: Bike },
+    { label: "Best beginner motorcycles", icon: Shield },
+    { label: "Adventure bikes", icon: Compass },
+    { label: "Touring motorcycles", icon: Gauge },
+    { label: "Naked bikes", icon: Bike },
+    { label: "Sport bikes", icon: Bike },
 ];
 
 const featuredSections = [
@@ -14,16 +23,19 @@ const featuredSections = [
         title: "Latest Motorcycles",
         text: "Explore new motorcycle models and recent releases.",
         href: "/motorcycles",
+        icon: Bike,
     },
     {
         title: "Beginner Bike Guides",
         text: "Find motorcycles that are easier to learn on and compare options.",
         href: "/ai",
+        icon: Compass,
     },
     {
         title: "Maintenance Help",
         text: "Get answers on oil changes, chain care, tires, and service basics.",
         href: "/service",
+        icon: Wrench,
     },
 ];
 
@@ -53,6 +65,7 @@ export default function HomePage() {
                     padding: "32px 20px 80px",
                 }}
             >
+                {/* HERO */}
                 <section
                     style={{
                         padding: "34px",
@@ -102,17 +115,25 @@ export default function HomePage() {
                         right bike for your next ride.
                     </p>
 
-                    <div
-                        style={{
-                            marginBottom: "18px",
-                        }}
-                    >
+                    {/* SEARCH */}
+                    <div style={{ position: "relative", marginBottom: "18px" }}>
+                        <Search
+                            size={18}
+                            style={{
+                                position: "absolute",
+                                left: "16px",
+                                top: "50%",
+                                transform: "translateY(-50%)",
+                                color: "#8fa2bf",
+                            }}
+                        />
+
                         <input
                             type="text"
                             placeholder="Search by model, brand, or category..."
                             style={{
                                 width: "100%",
-                                padding: "18px 20px",
+                                padding: "18px 18px 18px 44px",
                                 borderRadius: "18px",
                                 border: "1px solid rgba(255,255,255,0.10)",
                                 background: "rgba(255,255,255,0.03)",
@@ -124,6 +145,7 @@ export default function HomePage() {
                         />
                     </div>
 
+                    {/* SEARCH TAGS */}
                     <div
                         style={{
                             display: "flex",
@@ -131,27 +153,35 @@ export default function HomePage() {
                             flexWrap: "wrap",
                         }}
                     >
-                        {popularSearches.map((item) => (
-                            <Link
-                                key={item}
-                                href="/motorcycles"
-                                style={{
-                                    textDecoration: "none",
-                                    padding: "10px 14px",
-                                    borderRadius: "999px",
-                                    background: "rgba(255,255,255,0.04)",
-                                    border: "1px solid rgba(255,255,255,0.08)",
-                                    color: "#d7e2f1",
-                                    fontSize: "14px",
-                                    fontWeight: 600,
-                                }}
-                            >
-                                {item}
-                            </Link>
-                        ))}
+                        {popularSearches.map((item) => {
+                            const Icon = item.icon;
+                            return (
+                                <Link
+                                    key={item.label}
+                                    href="/motorcycles"
+                                    style={{
+                                        display: "flex",
+                                        alignItems: "center",
+                                        gap: "8px",
+                                        textDecoration: "none",
+                                        padding: "10px 14px",
+                                        borderRadius: "999px",
+                                        background: "rgba(255,255,255,0.04)",
+                                        border: "1px solid rgba(255,255,255,0.08)",
+                                        color: "#d7e2f1",
+                                        fontSize: "14px",
+                                        fontWeight: 600,
+                                    }}
+                                >
+                                    <Icon size={16} />
+                                    {item.label}
+                                </Link>
+                            );
+                        })}
                     </div>
                 </section>
 
+                {/* FEATURE CARDS */}
                 <section
                     style={{
                         display: "grid",
@@ -160,44 +190,57 @@ export default function HomePage() {
                         marginBottom: "24px",
                     }}
                 >
-                    {featuredSections.map((section) => (
-                        <Link
-                            key={section.title}
-                            href={section.href}
-                            style={{
-                                textDecoration: "none",
-                                color: "white",
-                                padding: "22px",
-                                borderRadius: "22px",
-                                background:
-                                    "linear-gradient(180deg, rgba(11,24,44,0.96), rgba(8,18,34,0.98))",
-                                border: "1px solid rgba(255,255,255,0.08)",
-                            }}
-                        >
-                            <div
-                                style={{
-                                    fontSize: "24px",
-                                    fontWeight: 800,
-                                    marginBottom: "10px",
-                                    color: "white",
-                                }}
-                            >
-                                {section.title}
-                            </div>
+                    {featuredSections.map((section) => {
+                        const Icon = section.icon;
 
-                            <div
+                        return (
+                            <Link
+                                key={section.title}
+                                href={section.href}
                                 style={{
-                                    fontSize: "15px",
-                                    lineHeight: 1.7,
-                                    color: "#cfd9ea",
+                                    textDecoration: "none",
+                                    color: "white",
+                                    padding: "22px",
+                                    borderRadius: "22px",
+                                    background:
+                                        "linear-gradient(180deg, rgba(11,24,44,0.96), rgba(8,18,34,0.98))",
+                                    border: "1px solid rgba(255,255,255,0.08)",
                                 }}
                             >
-                                {section.text}
-                            </div>
-                        </Link>
-                    ))}
+                                <Icon
+                                    size={28}
+                                    style={{
+                                        marginBottom: "10px",
+                                        color: "#2FB2FF",
+                                    }}
+                                />
+
+                                <div
+                                    style={{
+                                        fontSize: "24px",
+                                        fontWeight: 800,
+                                        marginBottom: "10px",
+                                        color: "white",
+                                    }}
+                                >
+                                    {section.title}
+                                </div>
+
+                                <div
+                                    style={{
+                                        fontSize: "15px",
+                                        lineHeight: 1.7,
+                                        color: "#cfd9ea",
+                                    }}
+                                >
+                                    {section.text}
+                                </div>
+                            </Link>
+                        );
+                    })}
                 </section>
 
+                {/* SEO QUESTIONS */}
                 <section
                     style={{
                         padding: "24px",
@@ -212,9 +255,9 @@ export default function HomePage() {
                             display: "flex",
                             justifyContent: "space-between",
                             alignItems: "center",
-                            gap: "12px",
-                            flexWrap: "wrap",
                             marginBottom: "18px",
+                            flexWrap: "wrap",
+                            gap: "10px",
                         }}
                     >
                         <h2
@@ -222,7 +265,6 @@ export default function HomePage() {
                                 margin: 0,
                                 fontSize: "34px",
                                 fontWeight: 800,
-                                color: "white",
                                 letterSpacing: "-0.8px",
                             }}
                         >
@@ -232,12 +274,16 @@ export default function HomePage() {
                         <Link
                             href="/ai"
                             style={{
+                                display: "flex",
+                                alignItems: "center",
+                                gap: "6px",
                                 textDecoration: "none",
                                 color: "#2FB2FF",
                                 fontWeight: 700,
                                 fontSize: "14px",
                             }}
                         >
+                            <HelpCircle size={16} />
                             Explore answers
                         </Link>
                     </div>
@@ -254,6 +300,9 @@ export default function HomePage() {
                                 key={topic}
                                 href="/ai"
                                 style={{
+                                    display: "flex",
+                                    alignItems: "center",
+                                    gap: "10px",
                                     textDecoration: "none",
                                     padding: "18px",
                                     borderRadius: "18px",
@@ -262,9 +311,9 @@ export default function HomePage() {
                                     color: "white",
                                     fontSize: "16px",
                                     fontWeight: 600,
-                                    lineHeight: 1.6,
                                 }}
                             >
+                                <HelpCircle size={18} />
                                 {topic}
                             </Link>
                         ))}
