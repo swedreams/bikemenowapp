@@ -1,3 +1,5 @@
+"use client";
+
 import Link from "next/link";
 import {
     Search,
@@ -6,49 +8,52 @@ import {
     Compass,
     Wrench,
     Gauge,
-    HelpCircle
+    HelpCircle,
 } from "lucide-react";
-
-const popularSearches = [
-    { label: "Yamaha MT-07", icon: Bike },
-    { label: "Best beginner motorcycles", icon: Shield },
-    { label: "Adventure bikes", icon: Compass },
-    { label: "Touring motorcycles", icon: Gauge },
-    { label: "Naked bikes", icon: Bike },
-    { label: "Sport bikes", icon: Bike },
-];
-
-const featuredSections = [
-    {
-        title: "Latest Motorcycles",
-        text: "Explore new motorcycle models and recent releases.",
-        href: "/motorcycles",
-        icon: Bike,
-    },
-    {
-        title: "Beginner Bike Guides",
-        text: "Find motorcycles that are easier to learn on and compare options.",
-        href: "/ai",
-        icon: Compass,
-    },
-    {
-        title: "Maintenance Help",
-        text: "Get answers on oil changes, chain care, tires, and service basics.",
-        href: "/service",
-        icon: Wrench,
-    },
-];
-
-const seoTopics = [
-    "What is the best beginner motorcycle?",
-    "How to choose your first motorcycle",
-    "How often should you change motorcycle oil?",
-    "Best touring motorcycles for long rides",
-    "Best adventure motorcycles for beginners",
-    "Motorcycle maintenance checklist",
-];
+import { useLanguage } from "./context/LanguageContext";
 
 export default function HomePage() {
+    const { t } = useLanguage();
+
+    const popularSearches = [
+        { label: t.home.popularSearches.item1, icon: Bike },
+        { label: t.home.popularSearches.item2, icon: Shield },
+        { label: t.home.popularSearches.item3, icon: Compass },
+        { label: t.home.popularSearches.item4, icon: Gauge },
+        { label: t.home.popularSearches.item5, icon: Bike },
+        { label: t.home.popularSearches.item6, icon: Bike },
+    ];
+
+    const featuredSections = [
+        {
+            title: t.home.featured.card1.title,
+            text: t.home.featured.card1.text,
+            href: "/motorcycles",
+            icon: Bike,
+        },
+        {
+            title: t.home.featured.card2.title,
+            text: t.home.featured.card2.text,
+            href: "/ai",
+            icon: Compass,
+        },
+        {
+            title: t.home.featured.card3.title,
+            text: t.home.featured.card3.text,
+            href: "/service",
+            icon: Wrench,
+        },
+    ];
+
+    const seoTopics = [
+        t.home.topics.item1,
+        t.home.topics.item2,
+        t.home.topics.item3,
+        t.home.topics.item4,
+        t.home.topics.item5,
+        t.home.topics.item6,
+    ];
+
     return (
         <main
             style={{
@@ -65,7 +70,6 @@ export default function HomePage() {
                     padding: "32px 20px 80px",
                 }}
             >
-                {/* HERO */}
                 <section
                     style={{
                         padding: "34px",
@@ -85,7 +89,7 @@ export default function HomePage() {
                             marginBottom: "10px",
                         }}
                     >
-                        BikeMeNow
+                        {t.home.brand}
                     </div>
 
                     <h1
@@ -99,7 +103,7 @@ export default function HomePage() {
                             maxWidth: "760px",
                         }}
                     >
-                        Search Latest Motorcycles
+                        {t.home.heroTitle}
                     </h1>
 
                     <p
@@ -111,11 +115,9 @@ export default function HomePage() {
                             maxWidth: "760px",
                         }}
                     >
-                        Find new motorcycle models, compare categories, and discover the
-                        right bike for your next ride.
+                        {t.home.heroSubtitle}
                     </p>
 
-                    {/* SEARCH */}
                     <div style={{ position: "relative", marginBottom: "18px" }}>
                         <Search
                             size={18}
@@ -130,7 +132,7 @@ export default function HomePage() {
 
                         <input
                             type="text"
-                            placeholder="Search by model, brand, or category..."
+                            placeholder={t.home.searchPlaceholder}
                             style={{
                                 width: "100%",
                                 padding: "18px 18px 18px 44px",
@@ -145,7 +147,6 @@ export default function HomePage() {
                         />
                     </div>
 
-                    {/* SEARCH TAGS */}
                     <div
                         style={{
                             display: "flex",
@@ -181,7 +182,6 @@ export default function HomePage() {
                     </div>
                 </section>
 
-                {/* FEATURE CARDS */}
                 <section
                     style={{
                         display: "grid",
@@ -240,7 +240,6 @@ export default function HomePage() {
                     })}
                 </section>
 
-                {/* SEO QUESTIONS */}
                 <section
                     style={{
                         padding: "24px",
@@ -268,7 +267,7 @@ export default function HomePage() {
                                 letterSpacing: "-0.8px",
                             }}
                         >
-                            Popular Motorcycle Topics
+                            {t.home.topicsTitle}
                         </h2>
 
                         <Link
@@ -284,7 +283,7 @@ export default function HomePage() {
                             }}
                         >
                             <HelpCircle size={16} />
-                            Explore answers
+                            {t.home.exploreAnswers}
                         </Link>
                     </div>
 
