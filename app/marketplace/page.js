@@ -1,69 +1,55 @@
 import Link from "next/link";
 
-const bikes = [
+const items = [
     {
-        id: "yamaha-mt07",
-        name: "Yamaha MT-07",
-        price: "€7,900",
+        id: "helmet",
+        name: "Shoei RF-1400 Helmet",
+        price: "€450",
         location: "Stockholm",
-        year: "2022",
-        km: "6,200 km",
-        image: "/bikes/yamaha.webp",
+        image: "/gear/shoei.jpg",
+        category: "Helmet",
+        imageWidth: "86%",
+        imageHeight: "86%",
     },
     {
-        id: "honda-cbr650r",
-        name: "Honda CBR650R",
-        price: "€9,400",
+        id: "jacket",
+        name: "Alpinestars Riding Jacket",
+        price: "€320",
         location: "Gothenburg",
-        year: "2023",
-        km: "3,100 km",
-        image: "/bikes/honda.webp",
+        image: "/gear/alpinestars.webp",
+        category: "Gear",
+        imageWidth: "78%",
+        imageHeight: "90%",
     },
     {
-        id: "bmw-r1250-gs",
-        name: "BMW R1250 GS",
-        price: "€15,900",
+        id: "gloves",
+        name: "Dainese Racing Gloves",
+        price: "€120",
         location: "Malmö",
-        year: "2021",
-        km: "11,800 km",
-        image: "/bikes/bmw.webp",
+        image: "/gear/dainese.webp",
+        category: "Gear",
+        imageWidth: "84%",
+        imageHeight: "84%",
     },
     {
-        id: "kawasaki-z900",
-        name: "Kawasaki Z900",
-        price: "€10,200",
+        id: "exhaust",
+        name: "Akrapovic Exhaust",
+        price: "€850",
         location: "Uppsala",
-        year: "2022",
-        km: "5,400 km",
-        image: "/bikes/kawasaki.webp",
-    },
-    {
-        id: "ducati-monster",
-        name: "Ducati Monster",
-        price: "€12,700",
-        location: "Stockholm",
-        year: "2023",
-        km: "2,900 km",
-        image: "/bikes/ducati.webp",
-    },
-    {
-        id: "ktm-duke-790",
-        name: "KTM Duke 790",
-        price: "€8,300",
-        location: "Västerås",
-        year: "2020",
-        km: "9,100 km",
-        image: "/bikes/ktm.webp",
+        image: "/gear/akrapovic.webp",
+        category: "Parts",
+        imageWidth: "88%",
+        imageHeight: "62%",
     },
 ];
 
-export default function MotorcyclesPage() {
+export default function MarketplacePage() {
     return (
         <main
             style={{
                 minHeight: "100vh",
                 background:
-                    "radial-gradient(circle at top left, rgba(47,178,255,0.12), transparent 28%), linear-gradient(180deg, #06101d 0%, #081425 55%, #09182b 100%)",
+                    "radial-gradient(circle at top left, rgba(47,178,255,0.12), transparent 28%), linear-gradient(180deg,#06101d,#081425,#09182b)",
                 color: "white",
             }}
         >
@@ -74,87 +60,121 @@ export default function MotorcyclesPage() {
                     padding: "40px 20px 80px",
                 }}
             >
-                <h1
+                <section
                     style={{
-                        fontSize: "58px",
-                        margin: "0 0 14px",
-                        fontWeight: 800,
-                        letterSpacing: "-1px",
-                        color: "white",
+                        padding: "30px",
+                        borderRadius: "24px",
+                        background: "rgba(8,18,34,0.95)",
+                        border: "1px solid rgba(255,255,255,0.08)",
+                        marginBottom: "30px",
                     }}
                 >
-                    Discover Motorcycles
-                </h1>
+                    <h1
+                        style={{
+                            fontSize: "52px",
+                            fontWeight: 800,
+                            margin: "0 0 10px",
+                        }}
+                    >
+                        Marketplace
+                    </h1>
 
-                <p
-                    style={{
-                        margin: "0 0 26px",
-                        fontSize: "22px",
-                        color: "#a9b8cf",
-                        lineHeight: 1.6,
-                    }}
-                >
-                    Browse motorcycles from dealers and private sellers.
-                </p>
+                    <p
+                        style={{
+                            color: "#a6b6cc",
+                            fontSize: "18px",
+                            margin: "0 0 20px",
+                        }}
+                    >
+                        Buy and sell motorcycle gear, parts, and accessories.
+                    </p>
 
-                <input
-                    type="text"
-                    placeholder="Search motorcycles..."
-                    style={{
-                        width: "100%",
-                        maxWidth: "420px",
-                        padding: "14px 16px",
-                        borderRadius: "14px",
-                        border: "1px solid rgba(255,255,255,0.12)",
-                        background: "rgba(255,255,255,0.03)",
-                        color: "white",
-                        outline: "none",
-                        marginBottom: "28px",
-                        fontSize: "15px",
-                    }}
-                />
+                    <input
+                        placeholder="Search gear, helmets, parts..."
+                        style={{
+                            width: "100%",
+                            padding: "16px 18px",
+                            borderRadius: "16px",
+                            border: "1px solid rgba(255,255,255,0.1)",
+                            background: "rgba(255,255,255,0.03)",
+                            color: "white",
+                            fontSize: "16px",
+                            outline: "none",
+                            boxSizing: "border-box",
+                        }}
+                    />
+                </section>
 
                 <div
                     style={{
                         display: "grid",
-                        gridTemplateColumns: "repeat(auto-fit, minmax(260px, 1fr))",
-                        gap: "20px",
+                        gridTemplateColumns: "repeat(auto-fit,minmax(260px,1fr))",
+                        gap: "22px",
                     }}
                 >
-                    {bikes.map((bike) => (
+                    {items.map((item) => (
                         <div
-                            key={bike.id}
+                            key={item.id}
                             style={{
-                                borderRadius: "24px",
+                                borderRadius: "22px",
                                 overflow: "hidden",
-                                background:
-                                    "linear-gradient(180deg, rgba(11,24,44,0.96), rgba(8,18,34,0.98))",
-                                border: "1px solid rgba(255,255,255,0.10)",
-                                boxShadow: "0 16px 40px rgba(0,0,0,0.22)",
+                                background: "rgba(8,18,34,0.95)",
+                                border: "1px solid rgba(255,255,255,0.08)",
+                                boxShadow: "0 14px 35px rgba(0,0,0,0.25)",
                                 display: "flex",
                                 flexDirection: "column",
                             }}
                         >
                             <div
                                 style={{
-                                    background: "#efefef",
-                                    height: "240px",
-                                    padding: "18px",
+                                    height: "250px",
+                                    background: "#e9e9e9",
                                     display: "flex",
                                     alignItems: "center",
                                     justifyContent: "center",
+                                    position: "relative",
+                                    padding: "18px",
                                 }}
                             >
-                                <img
-                                    src={bike.image}
-                                    alt={bike.name}
+                <span
+                    style={{
+                        position: "absolute",
+                        top: "12px",
+                        left: "12px",
+                        background: "rgba(0,0,0,0.6)",
+                        padding: "6px 10px",
+                        borderRadius: "20px",
+                        fontSize: "12px",
+                        color: "white",
+                        zIndex: 2,
+                    }}
+                >
+                  {item.category}
+                </span>
+
+                                <div
                                     style={{
                                         width: "100%",
                                         height: "100%",
-                                        objectFit: "contain",
-                                        display: "block",
+                                        borderRadius: "16px",
+                                        background: "#f3f3f3",
+                                        display: "flex",
+                                        alignItems: "center",
+                                        justifyContent: "center",
+                                        overflow: "hidden",
                                     }}
-                                />
+                                >
+                                    <img
+                                        src={item.image}
+                                        alt={item.name}
+                                        style={{
+                                            width: item.imageWidth,
+                                            height: item.imageHeight,
+                                            objectFit: "contain",
+                                            display: "block",
+                                        }}
+                                    />
+                                </div>
                             </div>
 
                             <div
@@ -162,69 +182,54 @@ export default function MotorcyclesPage() {
                                     padding: "18px",
                                     display: "flex",
                                     flexDirection: "column",
+                                    gap: "10px",
                                     flex: 1,
                                 }}
                             >
-                                <h2
+                                <div
                                     style={{
-                                        margin: "0 0 8px",
-                                        fontSize: "20px",
-                                        fontWeight: 800,
+                                        fontSize: "18px",
+                                        fontWeight: 700,
                                         color: "white",
                                     }}
                                 >
-                                    {bike.name}
-                                </h2>
+                                    {item.name}
+                                </div>
 
-                                <p
+                                <div
                                     style={{
-                                        margin: "0 0 3px",
-                                        color: "#a9b8cf",
-                                        fontSize: "15px",
+                                        color: "#8fa2bf",
+                                        fontSize: "14px",
                                     }}
                                 >
-                                    {bike.year} • {bike.km}
-                                </p>
-
-                                <p
-                                    style={{
-                                        margin: "0 0 16px",
-                                        color: "#a9b8cf",
-                                        fontSize: "15px",
-                                    }}
-                                >
-                                    {bike.location}
-                                </p>
+                                    {item.location}
+                                </div>
 
                                 <div
                                     style={{
                                         fontSize: "20px",
                                         fontWeight: 800,
-                                        marginBottom: "16px",
                                         color: "white",
                                     }}
                                 >
-                                    {bike.price}
+                                    {item.price}
                                 </div>
 
-                                <div style={{ marginTop: "auto" }}>
-                                    <Link
-                                        href={`/motorcycles/${bike.id}`}
-                                        style={{
-                                            display: "block",
-                                            width: "100%",
-                                            textAlign: "center",
-                                            padding: "14px 16px",
-                                            borderRadius: "14px",
-                                            textDecoration: "none",
-                                            background: "linear-gradient(90deg, #2FB2FF, #27E0A7)",
-                                            color: "#04111f",
-                                            fontWeight: 800,
-                                        }}
-                                    >
-                                        View Listing
-                                    </Link>
-                                </div>
+                                <Link
+                                    href={`/marketplace/${item.id}`}
+                                    style={{
+                                        marginTop: "auto",
+                                        textAlign: "center",
+                                        padding: "12px",
+                                        borderRadius: "12px",
+                                        background: "linear-gradient(90deg,#2FB2FF,#27E0A7)",
+                                        color: "#04111f",
+                                        fontWeight: 700,
+                                        textDecoration: "none",
+                                    }}
+                                >
+                                    View Listing
+                                </Link>
                             </div>
                         </div>
                     ))}
